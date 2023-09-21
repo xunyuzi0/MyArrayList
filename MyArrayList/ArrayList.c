@@ -29,6 +29,18 @@ int main(void) {
 
 	
 
+	append(&arr, 41);
+	append(&arr, 5);
+	append(&arr, -54);
+	append(&arr, 44);
+	append(&arr, 14);
+	show(&arr);
+
+	if (insert(&arr, 3, 1000)) {
+		printf("插入元素成功！\n");
+	}
+	show(&arr);
+
 	return 0;
 }
 
