@@ -1,15 +1,15 @@
-#include<stdio.h>
-#include<stdbool.h>//Ìá¹©boolÊı¾İÀàĞÍ 
-#include<stdlib.h>//Ìá¹©mallocº¯Êı 
+ï»¿#include<stdio.h>
+#include<stdbool.h>//æä¾›boolæ•°æ®ç±»å‹ 
+#include<stdlib.h>//æä¾›mallocå‡½æ•° 
 
-//±¾³ÌĞòÍê³ÉÁËË³Ğò±íÊı¾İ½á¹¹ÒÔ¼°²¿·ÖËã·¨ 
+//æœ¬ç¨‹åºå®Œæˆäº†é¡ºåºè¡¨æ•°æ®ç»“æ„ä»¥åŠéƒ¨åˆ†ç®—æ³• 
 
-//´´½¨Ò»¸ö½á¹¹ÌåÓÃÀ´ÃèÊöË³Ğò±íÊı¾İ½á¹¹ 
+//åˆ›å»ºä¸€ä¸ªç»“æ„ä½“ç”¨æ¥æè¿°é¡ºåºè¡¨æ•°æ®ç»“æ„ 
 typedef struct Array {
 
-	int* pArr;//´æ·ÅË³Ğò±íÊ×ÔªËØµØÖ·µÄÖ¸Õë±äÁ¿ 
-	int length;//´æ·ÅË³Ğò±íµÄ³¤¶È 
-	int cnt;//ÓĞĞ§ÔªËØ¸öÊı 
+	int* pArr;//å­˜æ”¾é¡ºåºè¡¨é¦–å…ƒç´ åœ°å€çš„æŒ‡é’ˆå˜é‡ 
+	int length;//å­˜æ”¾é¡ºåºè¡¨çš„é•¿åº¦ 
+	int cnt;//æœ‰æ•ˆå…ƒç´ ä¸ªæ•° 
 
 } ArrayList, pArrayList;
 
@@ -27,7 +27,19 @@ void inversion(ArrayList* pArray);
 
 int main(void) {
 
-	
+	int len = 0;//å­˜æ”¾é¡ºåºè¡¨é•¿åº¦ 
+	int cnt = 0;//å­˜æ”¾é¡ºåºè¡¨æœ‰æ•ˆå…ƒç´ ä¸ªæ•° 
+	int num = 0;
+	int num2 = 0;
+
+	ArrayList arr;//åˆ›å»ºä¸€ä¸ªæ¨¡æ‹Ÿé¡ºåºè¡¨çš„ç»“æ„ä½“å˜é‡ 
+
+	printf_s("è¯·è¾“å…¥éœ€è¦åˆ›å»ºçš„é¡ºåºè¡¨é•¿åº¦");
+	scanf_s("%d", &len);
+	if (init(&arr, len))
+		printf_s("é¡ºåºè¡¨åˆ›å»ºæˆåŠŸï¼\n");
+	else
+		printf_s("é¡ºåºè¡¨åˆ›å»ºæˆåŠŸï¼\n");
 
 	append(&arr, 41);
 	append(&arr, 5);
@@ -65,20 +77,20 @@ int main(void) {
 	return 0;
 }
 
-//ÊµÏÖË³Ğò±íµÄ³õÊ¼»¯ 
+//å®ç°é¡ºåºè¡¨çš„åˆå§‹åŒ– 
 bool init(ArrayList* pArray, int len) {
 	
 	if (len <= 0) {
-		printf_s("Ë³Ğò±í³¤¶ÈÓ¦¸Ã´óÓÚ»òµÈÓÚ1£¡\n");
+		printf_s("é¡ºåºè¡¨é•¿åº¦åº”è¯¥å¤§äºæˆ–ç­‰äº1ï¼\n");
 		return false;
 	}
 
-	//ÎªË³Ğò±í¿ª±ÙÒ»¸ö³¤¶ÈÎªlenµÄÁ¬Ğø¿Õ¼ä£¬²¢½«Ê×µØÖ··µ»Ø¸øË³Ğò±í½á¹¹ÌåµÄpArrÓò 
+	//ä¸ºé¡ºåºè¡¨å¼€è¾Ÿä¸€ä¸ªé•¿åº¦ä¸ºlençš„è¿ç»­ç©ºé—´ï¼Œå¹¶å°†é¦–åœ°å€è¿”å›ç»™é¡ºåºè¡¨ç»“æ„ä½“çš„pArråŸŸ 
 	pArray->pArr = (int*)malloc(len * sizeof(int));
 
-	//×¢Òâ£¡ĞèÒª¼ì²é¶¯Ì¬ÄÚ´æÊÇ·ñ·ÖÅä³É¹¦£¬ÈôÊ§°Ümallocº¯Êı½«·µ»ØNULL 
+	//æ³¨æ„ï¼éœ€è¦æ£€æŸ¥åŠ¨æ€å†…å­˜æ˜¯å¦åˆ†é…æˆåŠŸï¼Œè‹¥å¤±è´¥mallocå‡½æ•°å°†è¿”å›NULL 
 	if (NULL == pArray->pArr) {
-		printf_s("¶¯Ì¬ÄÚ´æ·ÖÅäÊ§°Ü£¡\n");
+		printf_s("åŠ¨æ€å†…å­˜åˆ†é…å¤±è´¥ï¼\n");
 		exit(-1);
 	}
 	else {
@@ -89,7 +101,7 @@ bool init(ArrayList* pArray, int len) {
 
 }
 
-//ÊµÏÖË³Ğò±íµÄÅĞÂú£¬ÈôÂúÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse 
+//å®ç°é¡ºåºè¡¨çš„åˆ¤æ»¡ï¼Œè‹¥æ»¡åˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false 
 bool is_full(ArrayList* pArray) {
 	
 	if (pArray->cnt == pArray->length) {
@@ -100,7 +112,7 @@ bool is_full(ArrayList* pArray) {
 
 }
 
-//ÊµÏÖË³Ğò±íµÄÅĞ¿Õ£¬Èô¿ÕÔò·µ»Øtrue£¬·ñÔò·µ»Øfalse 
+//å®ç°é¡ºåºè¡¨çš„åˆ¤ç©ºï¼Œè‹¥ç©ºåˆ™è¿”å›trueï¼Œå¦åˆ™è¿”å›false 
 bool is_empty(ArrayList* pArray) {
 	
 	if (pArray->cnt == 0) {
@@ -111,49 +123,129 @@ bool is_empty(ArrayList* pArray) {
 
 }
 
-//ÔÚË³Ğò±íÄ©Î²×·¼ÓÒ»¸öÔªËØ 
+//åœ¨é¡ºåºè¡¨æœ«å°¾è¿½åŠ ä¸€ä¸ªå…ƒç´  
 bool append(ArrayList* pArray, int num) {
 	
+	if (is_full(pArray)) {
+		printf_s("\n");
+		return false;
+	}
+	else {
+		pArray->pArr[pArray->cnt] = num;
+		pArray->cnt++;
+		return true;
+	}
+
 }
 
-//½«Ë³Ğò±í±éÀúÊä³ö 
+//å°†é¡ºåºè¡¨éå†è¾“å‡º 
 void show(ArrayList* pArray) {
 
-	
+	if (is_empty(pArray)) {
+		printf_s("é¡ºåºè¡¨ä¸ºç©ºï¼Œè¾“å‡ºå¤±è´¥ï¼\n");
+		return false;
+	}
+
+	for (int i = 0; i < pArray->cnt; i++) {
+		printf_s("%d:%d   ", i + 1, pArray->pArr[i]);
+	}
+	printf_s("\n");
+
 }
 
-//½«Ä³¸öÔªËØ²åÈëµ½Ë³Ğò±íµÚpos¸öÎ»ÖÃÉÏ£¬0<pos<=cnt+1
+//å°†æŸä¸ªå…ƒç´ æ’å…¥åˆ°é¡ºåºè¡¨ç¬¬posä¸ªä½ç½®ä¸Šï¼Œ0<pos<=cnt+1
 bool insert(ArrayList* pArray, int pos, int num) {
 
+	if (is_full(pArray)) {
+		printf_s("é¡ºåºè¡¨å·²æ»¡ï¼Œæ’å…¥å¤±è´¥ï¼\n");
+		return false;
+	}
+	for (int i = pArray->cnt - 1; i >= pos - 1; i--) {
+		pArray->pArr[i + 1] = pArray->pArr[i];
+	}
+	pArray->pArr[pos - 1] = num;
+	pArray->cnt++;
+	return true;
 	
 }
 
-//É¾³ıË³Ğò±íµÚpos¸öÔªËØ£¬0<pos<=cnt£¬²¢½«±»É¾³ıÔªËØÍ¨¹ı*num´«»Ø 
+//åˆ é™¤é¡ºåºè¡¨ç¬¬posä¸ªå…ƒç´ ï¼Œ0<pos<=cntï¼Œå¹¶å°†è¢«åˆ é™¤å…ƒç´ é€šè¿‡*numä¼ å› 
 bool delete_Arr(ArrayList* pArray, int pos, int* num) {
 
-	
+	if (is_empty(pArray)) {
+		printf_s("é¡ºåºè¡¨ä¸ºç©ºï¼Œåˆ é™¤å¤±è´¥ï¼\n");
+		return false;
+	}
+
+	*num = pArray->pArr[pos - 1];
+
+	for (int i = pos; i < pArray->cnt; i++) {
+		pArray->pArr[i - 1] = pArray->pArr[i];
+	}
+	pArray->cnt--;
+	return true;
+
 }
 
 
-//Çå¿ÕÕû¸öË³Ğò±í 
+//æ¸…ç©ºæ•´ä¸ªé¡ºåºè¡¨ 
 bool clear(ArrayList* pArray) {
 
-	
+	if (is_empty(pArray)) {
+		printf_s("é¡ºåºè¡¨ä¸ºç©ºï¼Œæ¸…ç©ºå¤±è´¥ï¼\n");
+		return false;
+	}
+	for (int i = 0; i < pArray->cnt; i++) {
+		pArray->pArr[i] = 0;
+	}
+	pArray->cnt = 0;
+	return true;
+
 }
 
-//½«Ë³Ğò±íÔªËØ°´´ÓĞ¡µ½´óÅÅĞò 
+//å°†é¡ºåºè¡¨å…ƒç´ æŒ‰ä»å°åˆ°å¤§æ’åº 
 void sort(ArrayList* pArray) {
 
+	int temp = 0;
+
+	if (is_empty(pArray)) {
+		printf_s("é¡ºåºè¡¨ä¸ºç©ºï¼Œæ’åºå¤±è´¥ï¼\n");
+		return false;
+	}
+
+	for (int i = 0; i < pArray->cnt - 1; i++) {
+		for (int j = i + 1; j < pArray->cnt; j++) {
+			if (pArray->pArr[i] > pArray->pArr[j]) {
+				temp = pArray->pArr[i];
+				pArray->pArr[i] = pArray->pArr[j];
+				pArray->pArr[j] = temp;
+			}
+		}
+	}
 	
 }
 
-//½«Ë³Ğò±íÔªËØµ¹ÖÃ 
+//å°†é¡ºåºè¡¨å…ƒç´ å€’ç½® 
 void inversion(ArrayList* pArray) {
 
-	
+	int temp = 0;
+
+	if (is_empty(pArray)) {
+		printf_s("é¡ºåºè¡¨ä¸ºç©ºï¼Œå€’ç½®å¤±è´¥ï¼\n");
+		return false;
+	}
+
+	for (int i = 0, j = pArray->cnt - 1; i < j; i++, j--) {
+		temp = pArray->pArr[i];
+		pArray->pArr[i] = pArray->pArr[j];
+		pArray->pArr[j] = temp;
+	}
+
 }
 
-//·µ»ØË³Ğò±íµÚpos¸öÔªËØ£¬0<pos<=cnt 
+//è¿”å›é¡ºåºè¡¨ç¬¬posä¸ªå…ƒç´ ï¼Œ0<pos<=cnt 
 int get(ArrayList* pArray, int pos) {
 	
+	return pArray->pArr[pos - 1];
+
 }
