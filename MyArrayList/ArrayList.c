@@ -41,6 +41,27 @@ int main(void) {
 	}
 	show(&arr);
 
+	if (delete_Arr(&arr, 4, &num)) {
+		printf_s("删除元素成功！删除的元素是：%d\n", num);
+	}
+	show(&arr);
+
+	sort(&arr);
+	printf_s("排序后顺序表内容为：\n");
+	show(&arr);
+
+	inversion(&arr);
+	printf_s("倒置后顺序表内容为：\n");
+	show(&arr);
+
+	num2 = get(&arr, 4);
+	printf_s("取得的元素为%d\n", num2);
+
+	if (clear(&arr)) {
+		printf_s("清空顺序表成功！\n");
+	}
+	show(&arr);
+
 	return 0;
 }
 
