@@ -35,16 +35,47 @@ int main(void) {
 //实现顺序表的初始化 
 bool init(ArrayList* pArray, int len) {
 	
+	if (len <= 0) {
+		printf_s("顺序表长度应该大于或等于1！\n");
+		return false;
+	}
+
+	//为顺序表开辟一个长度为len的连续空间，并将首地址返回给顺序表结构体的pArr域 
+	pArray->pArr = (int*)malloc(len * sizeof(int));
+
+	//注意！需要检查动态内存是否分配成功，若失败malloc函数将返回NULL 
+	if (NULL == pArray->pArr) {
+		printf_s("动态内存分配失败！\n");
+		exit(-1);
+	}
+	else {
+		pArray->length = len;
+		pArray->cnt = 0;
+	}
+	return true;
+
 }
 
 //实现顺序表的判满，若满则返回true，否则返回false 
 bool is_full(ArrayList* pArray) {
 	
+	if (pArray->cnt == pArray->length) {
+		return true;
+	}
+	else
+		return false;
+
 }
 
 //实现顺序表的判空，若空则返回true，否则返回false 
 bool is_empty(ArrayList* pArray) {
 	
+	if (pArray->cnt == 0) {
+		return true;
+	}
+	else
+		return false;
+
 }
 
 //在顺序表末尾追加一个元素 
