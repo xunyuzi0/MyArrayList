@@ -104,22 +104,14 @@ bool init(ArrayList* pArray, int len) {
 //实现顺序表的判满，若满则返回true，否则返回false 
 bool is_full(ArrayList* pArray) {
 	
-	if (pArray->cnt == pArray->length) {
-		return true;
-	}
-	else
-		return false;
+	return (pArray->cnt == pArray->length);
 
 }
 
 //实现顺序表的判空，若空则返回true，否则返回false 
 bool is_empty(ArrayList* pArray) {
 	
-	if (pArray->cnt == 0) {
-		return true;
-	}
-	else
-		return false;
+	return (pArray->cnt == 0);
 
 }
 
